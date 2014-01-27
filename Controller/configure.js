@@ -11,7 +11,8 @@ var decorator = module.exports = function (options, protect) {
   if (!options.model && !options.singular) throw errors.Configuration('Must provide the Mongoose schema name.');
 
   var controller = this;
-  var model = mongoose.model(options.model || options.singular);
+  var connection = (options.connection) ? options.connection : mongoose;
+  var model = connection.model(options.model || options.singular);
   var modelName = model.modelName;
   var findByPath;
   var deselected = [];

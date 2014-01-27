@@ -227,6 +227,7 @@ Controller Options
 | singular | The name of the schema, as registered with `mongoose.model`. |
 | plural | This will be set automatically using the `lingo` module, but may be overridden by passing it into `baucis.rest`.
 | model | The name of the mongoose model.  This will be set to the value of singular by default (and vice versa). |
+| connection | A mongoose connection. You can pass a custom connection to pick the model from. By default default connection will be used. |
 | basePath | Defaults to `/`.  Used for embedding a controller in another controller. |
 | publish | Set to `false` to not publish the controller's endpoints when `baucis()` is called. |
 | select | Select or deselect fields for all queries e.g. `'foo +bar -password'` |

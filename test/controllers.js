@@ -21,6 +21,20 @@ describe('Controllers', function () {
     done();
   });
 
+  it('should allow passing a custom mongoose connection to pick model from', function (done) {
+    var makeController = function () {
+      var connection = {
+        model: function (name) {
+          expect(name).to.be('store');
+          return mongoose.model('store');
+        }
+      };
+      baucis.rest({ singular: 'store', publish: false, connection: connection });
+    };
+    expect(makeController).to.not.throwException();
+    done();
+  });
+
   it('should support select options for GET requests', function (done) {
     var options = {
       url: 'http://localhost:8012/api/cheeses',
