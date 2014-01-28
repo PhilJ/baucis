@@ -22,16 +22,18 @@ describe('Controllers', function () {
   });
 
   it('should allow passing a custom mongoose connection to pick model from', function (done) {
+    var connectionUsed = false;
     var makeController = function () {
       var connection = {
         model: function (name) {
-          expect(name).to.be('store');
+          connectionUsed = true;
           return mongoose.model('store');
         }
       };
       baucis.rest({ singular: 'store', publish: false, connection: connection });
     };
     expect(makeController).to.not.throwException();
+    expect(connectionUsed).to.be(true);
     done();
   });
 
